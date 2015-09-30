@@ -10,4 +10,5 @@ TBD
 
 ** License
 [[http://yurrriq.mit-license.org/2015][The MIT License (MIT)]]
+
 Copyright © 2015 [[https://github.com/yurrriq][Eric Bailey]]
