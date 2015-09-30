@@ -1,0 +1,54 @@
+#!/usr/bin/env lfe
+;; -*- lfe -*-
+
+(defun main
+  ([`(,github-string)]
+   (try
+     (let ((`(,username . (,repo . ())) (binary:split
+                                         (list_to_binary github-string)
+                                         #"/" '(global))))
+       (lit-clone username repo))
+     (catch
+       (`#(,_ ,_ ,_) (usage)))))
+  ([_]
+   (lfe_io:format "~p\n" `(,script-args)) (usage)))
+
+(defun usage () (lfe_io:format "Usage: lit.lfsh <user>/<repository>" '()))
+
+(defun lit-clone
+  ([username repo] (when (andalso (is_binary username) (is_binary repo)))
+   (lit-clone username repo #"~/src")))
+
+(defun lit-clone
+  ([username repo dest] (when (andalso (is_binary username)
+                                       (is_binary repo)
+                                       (is_binary dest)))
+   (let ((result (git-clone username repo dest)))
+     (case result
+       (`#(error ,error) (lfe_io:format "echo \"~s\"" `(,error)))
+       ('ok (lfe_io:format "cd ~s/~s/~s" `(,dest ,username ,repo)))))))
+
+;; (defun mkdir ([username] (when (is_binary username)) (mkdir #"~/src" username)))
+
+;; (defun mkdir
+;;   ([root username] (when (andalso (is_binary root) (is_binary username)))
+;;    (let* ((dest    (lists:flatten (io_lib:format "~s/~s" `(,root ,username))))
+;;           (format  "mkdir -p ~s")
+;;           (command (lists:flatten (io_lib:format format `(,dest)))))
+;;      (case (os:cmd command)
+;;        ('() `#(ok ,dest))
+;;        (_   `#(error mkdir-failure))))))
+
+(defun git-clone
+  ([username repo dest] (when (andalso (is_binary username)
+                                       (is_binary repo)
+                                       (is_binary dest)))
+   (let* ((format  "git clone git@github.com:~s/~s.git ~s/~s/~s")
+          (data    `(,username ,repo ,dest ,username ,repo))
+          (command (lists:flatten (io_lib:format format data)))
+          (result  (os:cmd command)))
+     (case (lists:prefix "fatal" result)
+       ('true `#(error ,result))
+       ('false 'ok)))))
+
+(main script-args)
