@@ -1,0 +1,13 @@
+* lit
+[[https://github.com/yurrriq][My]] GitHub cloning workflow codified and automated in an [[https://github.com/rvirding/lfe][LFE]] [[https://github.com/rvirding/lfe/blob/develop/doc/lfescript.txt][script]].
+
+#+CAPTION: Tesla coil getting lit. Used under a CC BY-SA license.
+#+NAME:    fig:Teslacoil
+[[https://commons.wikimedia.org/wiki/File:Teslacoil.jpg][file:./resources/images/Teslacoil.jpg]]
+
+** Usage
+TBD
+
+** License
+[[http://yurrriq.mit-license.org/2015][The MIT License (MIT)]]
+Copyright © 2015 [[https://github.com/yurrriq][Eric Bailey]]
