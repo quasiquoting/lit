@@ -1,5 +1,5 @@
 * lit
-[[https://github.com/yurrriq][My]] GitHub cloning workflow codified and automated in an [[https://github.com/rvirding/lfe][LFE]] [[https://github.com/rvirding/lfe/blob/develop/doc/lfescript.txt][script]].
+[[https://github.com/yurrriq][My]] ~(git clone)~-ing workflow codified and automated in an [[https://github.com/rvirding/lfe][LFE]] [[https://github.com/rvirding/lfe/blob/develop/doc/lfescript.txt][script]].
 
 #+CAPTION: Tesla coil getting lit. Used under a CC BY-SA license.
 #+NAME:    fig:Teslacoil
